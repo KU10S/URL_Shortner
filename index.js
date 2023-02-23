@@ -14,6 +14,9 @@ app.use(express.json());
 app.use("/url", urlRoute)
 
 app.get('/:shortId', async (req, res) => {
+
+    console.log(req.header('x-forwarded-for') , "--" , req.socket.remoteAddress);
+
     const shortId = req.params.shortId
     const entry = await URL.findOneAndUpdate(
         {
